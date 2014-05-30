@@ -1,8 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">TReader3</string>
+    <string name="app_name">TReader</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+        <string-array name="group_types">
+        <item>新闻@http://www.cnblogs.com/news/</item>
+        <item>.NET技术@http://www.cnblogs.com/cate/108698/</item>
+        <item>编程语言@http://www.cnblogs.com/cate/2/</item>
+        <item>软件设计@http://www.cnblogs.com/cate/108701/</item>
+        <item>Web前端@http://www.cnblogs.com/cate/108703/</item>
+        <item>企业信息化@http://www.cnblogs.com/cate/108704/</item>
+        <item>手机开发@http://www.cnblogs.com/cate/108705/</item>
+        <item>数据库技术@http://www.cnblogs.com/cate/108712/</item>
+        <item>操作系统@http://www.cnblogs.com/cate/108724/</item>
+        <item>其他分类@http://www.cnblogs.com/cate/cate/4/</item>
+        <item>随笔@http://www.cnblogs.com/cate/all/</item>
+    </string-array>
+    <string-array name="items_types">
+        <item>最新新闻@http://www.cnblogs.com/news/</item>
+        <item>.NET技术@http://www.cnblogs.com/cate/108698/$.NET新手区@http://www.cnblogs.com/cate/beginner/$ASP.NET@http://www.cnblogs.com/cate/aspnet/$C#@http://www.cnblogs.com/cate/csharp/$WinForm@http://www.cnblogs.com/cate/winform/$Silverlight@http://www.cnblogs.com/cate/silverlight/$WCF@http://www.cnblogs.com/cate/wcf/$CLR@http://www.cnblogs.com/cate/clr/$WPF@http://www.cnblogs.com/cate/wpf/$XNA@http://www.cnblogs.com/cate/xna/$Visual Studio@http://www.cnblogs.com/cate/vs2010/$ASP.NET MVC@http://www.cnblogs.com/cate/mvc/$控件开发@http://www.cnblogs.com/cate/control/$Entity Framework@http://www.cnblogs.com/cate/ef/$WinRT/Metro@http://www.cnblogs.com/cate/winrt_metro/</item>
+        <item>编程语言@http://www.cnblogs.com/cate/2/$Java@http://www.cnblogs.com/cate/java/$C++@http://www.cnblogs.com/cate/cpp/$PHP@http://www.cnblogs.com/cate/php/$Delphi@http://www.cnblogs.com/cate/delphi/$Python@http://www.cnblogs.com/cate/python/$Ruby@http://www.cnblogs.com/cate/ruby/$C@http://www.cnblogs.com/cate/c/$Erlang@http://www.cnblogs.com/cate/erlang/$Verilog@http://www.cnblogs.com/cate/verilog/</item>
+        <item>软件设计@http://www.cnblogs.com/cate/108701/$架构设计@http://www.cnblogs.com/cate/design/$面向对象@http://www.cnblogs.com/cate/108702/$设计模式@http://www.cnblogs.com/cate/dp/</item>
+        <item>Web前端@http://www.cnblogs.com/cate/108703/$Html/Css@http://www.cnblogs.com/cate/web/$JavaScript@http://www.cnblogs.com/cate/javascript/$jQuery@http://www.cnblogs.com/cate/jquery/$HTML5@http://www.cnblogs.com/cate/html5/</item>
+        <item>企业信息化@http://www.cnblogs.com/cate/108704/$SAP@http://www.cnblogs.com/cate/sap/$SharePoint@http://www.cnblogs.com/cate/sharepoint/$GIS技术@http://www.cnblogs.com/cate/gis/$Oracle ERP@http://www.cnblogs.com/cate/OracleERP/$Dynamics CRM@http://www.cnblogs.com/cate/dynamics/$K2 BPM@http://www.cnblogs.com/cate/k2/$企业信息化其他@http://www.cnblogs.com/cate/3/</item>
+        <item>手机开发@http://www.cnblogs.com/cate/108705/$Android开发@http://www.cnblogs.com/cate/android/$iOS开发@http://www.cnblogs.com/cate/ios/$Windows Phone@http://www.cnblogs.com/cate/wp/$Windows Mobile@http://www.cnblogs.com/cate/wm/$其他手机开发@http://www.cnblogs.com/cate/mobile/</item>
+        <item>数据库技术@http://www.cnblogs.com/cate/108712/$敏捷开发@http://www.cnblogs.com/cate/agile/$项目与团队管理@http://www.cnblogs.com/cate/pm/$软件工程其他@http://www.cnblogs.com/cate/Engineering/</item>
+        <item>操作系统@http://www.cnblogs.com/cate/108724/$SQL Server@http://www.cnblogs.com/cate/sqlserver/$Oracle@http://www.cnblogs.com/cate/oracle/$MySQL@http://www.cnblogs.com/cate/mysql/$NoSQL@http://www.cnblogs.com/cate/nosql/$其他数据库@http://www.cnblogs.com/cate/database/</item>
+        <item>其他分类@http://www.cnblogs.com/cate/4/$Windows 7@http://www.cnblogs.com/cate/win7/$Windows Server@http://www.cnblogs.com/cate/winserver/$Linux@http://www.cnblogs.com/cate/linux/</item>
+        <item>随笔@http://www.cnblogs.com/cate/all/$非技术区@http://www.cnblogs.com/cate/life/$软件测试@http://www.cnblogs.com/cate/testing/$代码与软件发布@http://www.cnblogs.com/cate/software/$计算机图形学@http://www.cnblogs.com/cate/cg/$Google开发@http://www.cnblogs.com/cate/google/$程序人生@http://www.cnblogs.com/cate/codelife/$求职面试@http://www.cnblogs.com/cate/job/$读书区@http://www.cnblogs.com/cate/book/$转载区@http://www.cnblogs.com/cate/quoted/$Windows CE@http://www.cnblogs.com/cate/wince/$翻译区@http://www.cnblogs.com/cate/translate/$开源研究@http://www.cnblogs.com/cate/opensource/$Flex@http://www.cnblogs.com/cate/flex/$云计算@http://www.cnblogs.com/cate/cloud/$算法与数据结构@http://www.cnblogs.com/cate/algorithm/$其他技术区@http://www.cnblogs.com/cate/misc/</item>
+        <item></item>
+    </string-array>
+    
+  <string-array name="left_array">
+        <item>即时新闻</item>
+        <item>极客头条</item>
+        <item>编程语言@http://www.cnblogs.com/cate/2/</item>
+        <item>软件设计@http://www.cnblogs.com/cate/108701/</item>
+        <item>Web前端@http://www.cnblogs.com/cate/108703/</item>
+        <item>企业信息化@http://www.cnblogs.com/cate/108704/</item>
+        <item>手机开发@http://www.cnblogs.com/cate/108705/</item>
+        <item>数据库技术@http://www.cnblogs.com/cate/108712/</item>
+        <item>操作系统@http://www.cnblogs.com/cate/108724/</item>
+        <item>其他分类@http://www.cnblogs.com/cate/cate/4/</item>
+        <item>随笔@http://www.cnblogs.com/cate/all/</item>
+    </string-array>
+    
+    
+    <string name="text_1">最新新闻</string>
+    <string name="text_2">下拉刷新</string>
 
 </resources>

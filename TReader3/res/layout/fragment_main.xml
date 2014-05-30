@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+     >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_body"
+         >
+
+        <com.treader.app.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <ListView
+                android:id="@+id/lvMain"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:cacheColorHint="@android:color/transparent"
+                android:divider="@null"
+                android:fadingEdge="none"
+                android:fadingEdgeLength="0dp"
+                android:fastScrollEnabled="false"
+                android:footerDividersEnabled="false"
+                android:headerDividersEnabled="false"
+                android:layoutAnimation="@anim/list_anim_layout"
+                android:listSelector="@android:color/transparent"
+                android:scrollbars="none" />
+        </com.treader.app.widget.SwipeRefreshLayout>
+
+        <RelativeLayout
+            android:id="@+id/llMainTitle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/fragment_title_hight"
+            android:background="#E0E0E0"
+            android:orientation="vertical"
+            android:visibility="gone" >
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_1px"
+                android:background="#CCCCCC" />
+
+            <TextView
+                android:id="@+id/tvMainHeadTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dimen_20"
+                android:text="今日新闻"
+                android:textColor="@color/black_item_text"
+                android:textSize="@dimen/font_18" />
+
+        </RelativeLayout>
+    </FrameLayout>
+
+    <View
+        android:id="@+id/vHide"
+        android:layout_width="0px"
+        android:layout_height="0px"
+        android:layout_alignParentBottom="true" />
+
+    <RelativeLayout
+        android:id="@+id/RlBackToTop"
+        android:layout_width="@dimen/dimen_48"
+        android:layout_height="@dimen/dimen_48"
+        android:layout_above="@id/vHide"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/dimen_80"
+        android:layout_marginRight="@dimen/dimen_10"
+        android:background="@drawable/select_back_to_top"
+        android:clickable="true"
+        android:visibility="gone" >
+
+        <ImageView
+            android:layout_width="@dimen/dimen_16"
+            android:layout_height="@dimen/dimen_16"
+            android:layout_centerInParent="true"
+            android:src="@drawable/general__hat_grid_view__back_to_top" />
+    </RelativeLayout>
+
+</RelativeLayout>

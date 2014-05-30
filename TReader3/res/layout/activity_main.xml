@@ -1,16 +1,27 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/llMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity" >
+    android:orientation="vertical" >
 
-    <TextView
-        android:layout_width="wrap_content"
+    <!-- <RelativeLayout
+        android:id="@+id/rlAccHeadArea"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:orientation="horizontal" /> -->
 
-</RelativeLayout>
+    <fragment
+        android:id="@+id/fAccTitleBar"
+        android:name="com.treader.app.fragment.TReaderTitleFragment"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fragment_title_hight" />
+
+    <LinearLayout
+        android:id="@+id/llBodyArea"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal" />
+
+</LinearLayout>

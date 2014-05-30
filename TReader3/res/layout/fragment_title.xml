@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_title" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/ivTitleLeftIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dimen_10"
+            android:src="@drawable/index_nav_columns" />
+
+        <TextView
+            android:id="@+id/tvTitleName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/text_1"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/font_20" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_1px"
+            android:layout_alignParentBottom="true"
+            android:background="#CCCCCC" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_title"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/tvRefresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/text_2"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/font_20" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_1px"
+            android:layout_alignParentBottom="true"
+            android:background="#CCCCCC" />
+    </RelativeLayout>
+
+</merge>

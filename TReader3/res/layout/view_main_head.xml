@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/fragment_title_hight"
+    android:background="#E0E0E0" >
+
+
+
+    <TextView
+        android:id="@+id/tvHeadTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/dimen_20"
+        android:text="今日新闻"
+        android:textColor="@color/black_item_text"
+        android:textSize="@dimen/font_18" />
+
+
+
+</RelativeLayout>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/item_left_hight"
+    android:orientation="horizontal"
+     >
+
+    <ImageView
+        android:id="@+id/types_groups_bar"
+        android:layout_width="@dimen/item_5dp"
+        android:layout_height="match_parent"
+        />
+
+    <ImageView
+        android:id="@+id/types_groups_item_dot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/item_15dp"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:id="@+id/types_groups_favs"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_left_hight"
+        >
+
+        <TextView
+            android:textSize="@dimen/font_16"
+            android:paddingLeft="@dimen/text_padding"
+            android:id="@+id/types_groups_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:textColor="@android:color/white" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingLeft="@dimen/item_10dp"
+            android:paddingRight="@dimen/item_10dp"
+            android:src="@drawable/right_arrow_icon" />
+    </RelativeLayout>
+
+</LinearLayout>

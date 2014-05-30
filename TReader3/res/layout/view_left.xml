@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/btn_hight"
+        android:background="@color/item_left_normal"
+        android:layout_marginBottom="@dimen/item_gap" >
+
+        <RelativeLayout
+            android:id="@+id/llNbarLeftArea"
+            android:layout_width="@dimen/btn_hight"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:background="@drawable/select_layout"
+            android:clickable="true" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_launcher" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <ExpandableListView
+        android:id="@+id/expandlist_types"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:cacheColorHint="@android:color/transparent"
+        android:divider="@android:color/black"
+        android:dividerHeight="@dimen/item_gap"
+        android:groupIndicator="@null"
+        android:scrollbars="none" >
+    </ExpandableListView>
+
+</LinearLayout>
