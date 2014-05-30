@@ -1,4 +1,4 @@
-package com.dpt.treader3.fragment;
+package com.dpt.treader3.exception;
 
 public class ParserException extends RuntimeException {
 
