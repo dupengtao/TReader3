@@ -6,11 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.dpt.tbase.app.adapter.AbCustomBaseAdapter;
+import com.dpt.tbase.app.adapter.AbCustomTBaseAdapter;
 import com.dpt.treader3.R;
 import com.dpt.treader3.engine.to.EntryTo;
 
-public class MainListAdapter extends AbCustomBaseAdapter<EntryTo> {
+public class MainListAdapter extends AbCustomTBaseAdapter<EntryTo> {
 
     private Context mContext;
 
