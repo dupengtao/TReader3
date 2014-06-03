@@ -5,6 +5,8 @@ import android.os.Bundle;
 import com.dpt.tbase.app.base.TBaseFraActivity;
 import com.dpt.tbase.app.fragment.AbCompatibleFragment;
 import com.dpt.tbase.app.fragment.TBaseFragment;
+import com.dpt.treader3.fragment.ArticlesFra;
+import com.dpt.treader3.fragment.ArticlesFra.ArticlesFraListener;
 import com.dpt.treader3.fragment.CnblogsNewsFra;
 import com.dpt.treader3.fragment.CnblogsNewsFra.CnblogsNewsFraListener;
 import com.dpt.treader3.fragment.TReaderArticleFragment;
@@ -14,11 +16,12 @@ import com.dpt.treader3.fragment.TReaderTitleFragment.TReaderTitleListener;
 import com.dpt.treader3.net.Constants;
 
 public class TReaderFraActivity extends TBaseFraActivity implements
-CnblogsNewsFraListener,TReaderTitleListener,TReaderArticleListener{
+CnblogsNewsFraListener,TReaderTitleListener,TReaderArticleListener,ArticlesFraListener{
 
     private CnblogsNewsFra mNewsFra;
     private TReaderTitleFragment mTitleFragment;
     private TReaderArticleFragment mArticleFragment;
+    private ArticlesFra mArticlesFra;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +67,7 @@ CnblogsNewsFraListener,TReaderTitleListener,TReaderArticleListener{
 
     @Override
     public void onItemClick(String articleId, boolean isNews) {
-        gotoArticleFragment(articleId, isNews);
+        gotoArticlesFragment(articleId, isNews);
         changeTitle(Constants.ARTICLE_STYLE);
     }
 
@@ -72,11 +75,18 @@ CnblogsNewsFraListener,TReaderTitleListener,TReaderArticleListener{
         mTitleFragment.changeStyle(style);
     }
 
-    private void gotoArticleFragment(String articleId, boolean isNews) {
-        initArticleFragment();
-        mArticleFragment.load(articleId, isNews);
-        switchContent(mCur, mArticleFragment);
+    private void gotoArticlesFragment(String articleId, boolean isNews) {
+        initArticlesFragment();
+        mArticlesFra.initFirst(articleId);
+        switchContent(mCur, mArticlesFra);
     }
+    private ArticlesFra initArticlesFragment() {
+        if (mArticlesFra == null) {
+            mArticlesFra = new ArticlesFra();
+        }
+        return mArticlesFra;
+    }
+    
     private TReaderArticleFragment initArticleFragment() {
         if (mArticleFragment == null) {
             mArticleFragment = new TReaderArticleFragment();

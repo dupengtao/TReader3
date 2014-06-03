@@ -2,15 +2,17 @@ package com.dpt.treader3.fragment;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.dpt.tbase.app.base.interfaces.IFraCommCB;
+import com.dpt.tbase.app.base.utils.LogHelper;
 import com.dpt.tbase.app.fragment.TBaseFragment;
 import com.dpt.treader3.R;
-import com.dpt.treader3.adapter.ArticlesFraAdapter;
 
 public class ArticlesFra extends TBaseFragment {
 
@@ -26,10 +28,9 @@ public class ArticlesFra extends TBaseFragment {
     private View mView;
     private Activity mContext;
     private ArticlesFraListener mCallBack;
-
     private ViewPager mPager;
-
     private ArticlesFraAdapter mFraAdapter;
+    private String mArticleId;
 
     @Override
     public void onAttach(Activity activity) {
@@ -87,6 +88,37 @@ public class ArticlesFra extends TBaseFragment {
     @Override
     public boolean isAddCache() {
         return false;
+    }
+    
+    public void initFirst(String articleId) {
+        mArticleId=articleId;
+    }
+
+    
+     class ArticlesFraAdapter extends FragmentPagerAdapter {
+
+        public ArticlesFraAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int arg0) {
+            LogHelper.e(TAG, "-----------------"+arg0);
+            TReaderArticleFragment articleFragment = new TReaderArticleFragment(){
+                @Override
+                public String getKey() {
+                    return super.getKey();
+                }
+            };
+            articleFragment.load(mArticleId, true);
+            return articleFragment;
+        }
+
+        @Override
+        public int getCount() {
+            return 5;
+        }
+
     }
 
 }

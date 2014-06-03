@@ -9,6 +9,7 @@ import android.webkit.WebView;
 
 import com.dpt.tbase.app.base.engine.AbUiBaseResultCallBack;
 import com.dpt.tbase.app.base.interfaces.IFraCommCB;
+import com.dpt.tbase.app.base.utils.LogHelper;
 import com.dpt.tbase.app.fragment.TBaseFragment;
 import com.dpt.treader3.R;
 import com.dpt.treader3.engine.TReaderEngine;
@@ -40,7 +41,6 @@ public class TReaderArticleFragment extends TBaseFragment {
     private SwipeRefreshLayout mSwipeLayout;
     private boolean mIsNews;
     private String mArticleId;
-
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -61,7 +61,6 @@ public class TReaderArticleFragment extends TBaseFragment {
         mArticleView = new ArticleView(mContext, mWvArticle);
         mSwipeLayout = (SwipeRefreshLayout) mView
                 .findViewById(R.id.swipeRefresh);
-        // 顶部刷新的样式
         mSwipeLayout.setColorScheme(R.color.holo_red_light,
                 R.color.holo_green_light, R.color.holo_blue_bright,
                 R.color.holo_orange_light);
