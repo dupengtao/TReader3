@@ -14,12 +14,12 @@
 
     <fragment
         android:id="@+id/fAccTitleBar"
-        android:name="com.treader.app.fragment.TReaderTitleFragment"
+        android:name="com.dpt.treader3.fragment.TReaderTitleFragment"
         android:layout_width="match_parent"
         android:layout_height="@dimen/fragment_title_hight" />
 
     <LinearLayout
-        android:id="@+id/llBodyArea"
+        android:id="@+id/llReleaceId"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal" />

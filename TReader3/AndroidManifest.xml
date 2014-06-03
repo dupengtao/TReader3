@@ -17,9 +17,13 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:configChanges="keyboardHidden|orientation|screenSize"
+        android:screenOrientation="portrait"
+        android:theme="@android:style/Theme.Black.NoTitleBar"
+        android:windowSoftInputMode="adjustUnspecified|stateHidden"
+         >
         <activity
-            android:name="com.dpt.treader3.MainActivity"
+            android:name="com.dpt.treader3.TReaderFraActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
