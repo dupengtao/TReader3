@@ -7,14 +7,18 @@ import com.dpt.tbase.app.fragment.AbCompatibleFragment;
 import com.dpt.tbase.app.fragment.TBaseFragment;
 import com.dpt.treader3.fragment.CnblogsNewsFra;
 import com.dpt.treader3.fragment.CnblogsNewsFra.CnblogsNewsFraListener;
+import com.dpt.treader3.fragment.TReaderArticleFragment;
+import com.dpt.treader3.fragment.TReaderArticleFragment.TReaderArticleListener;
 import com.dpt.treader3.fragment.TReaderTitleFragment;
 import com.dpt.treader3.fragment.TReaderTitleFragment.TReaderTitleListener;
+import com.dpt.treader3.net.Constants;
 
 public class TReaderFraActivity extends TBaseFraActivity implements
-CnblogsNewsFraListener,TReaderTitleListener{
+CnblogsNewsFraListener,TReaderTitleListener,TReaderArticleListener{
 
     private CnblogsNewsFra mNewsFra;
     private TReaderTitleFragment mTitleFragment;
+    private TReaderArticleFragment mArticleFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,13 +64,44 @@ CnblogsNewsFraListener,TReaderTitleListener{
 
     @Override
     public void onItemClick(String articleId, boolean isNews) {
-        //gotoArticleFragment(articleId, isNews);
-        //changeTitle(Constants.ARTICLE_STYLE);
+        gotoArticleFragment(articleId, isNews);
+        changeTitle(Constants.ARTICLE_STYLE);
     }
 
+    private void changeTitle(int style) {
+        mTitleFragment.changeStyle(style);
+    }
+
+    private void gotoArticleFragment(String articleId, boolean isNews) {
+        initArticleFragment();
+        mArticleFragment.load(articleId, isNews);
+        switchContent(mCur, mArticleFragment);
+    }
+    private TReaderArticleFragment initArticleFragment() {
+        if (mArticleFragment == null) {
+            mArticleFragment = new TReaderArticleFragment();
+        }
+        return mArticleFragment;
+    }
+    
     @Override
     public void clickLeftIcon() {
-        
+        onBackPressed();
+    }
+    
+    @Override
+    public void onBackPressed() {
+        if (mCur == mArticleFragment) {
+            toMainFragment();
+            return;
+        }
+        super.onBackPressed();
+    }
+    
+    private void toMainFragment() {
+        if(switchContent(mCur, mNewsFra)){
+            changeTitle(Constants.LIST_STYLE);
+        }
     }
 
 }
