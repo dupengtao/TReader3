@@ -101,7 +101,7 @@ CnblogsNewsFraListener,TReaderTitleListener,TReaderArticleListener,ArticlesFraLi
     
     @Override
     public void onBackPressed() {
-        if (mCur == mArticleFragment) {
+        if (mCur == mArticlesFra) {
             toMainFragment();
             return;
         }
