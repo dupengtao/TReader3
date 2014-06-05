@@ -36,7 +36,9 @@ public class ArticlesFra extends TBaseFragment {
 
     public boolean isFirstLoad = true;
 
-    protected boolean mIsMoveToRight=true;
+    protected boolean mIsMoveToRight = true;
+
+    private int mCurArticleId;
 
     @Override
     public void onAttach(Activity activity) {
@@ -67,6 +69,7 @@ public class ArticlesFra extends TBaseFragment {
     }
 
     private void setEvents() {
+        
         mPager.setOnPageChangeListener(new OnPageChangeListener() {
             private int lastPage;
 
@@ -74,18 +77,13 @@ public class ArticlesFra extends TBaseFragment {
             public void onPageSelected(int arg0) {
                 if (lastPage > arg0) {// User Move to left
                     LogHelper.e(TAG, "lllllllllll");
-                    int articleId = Integer.valueOf(mFirstArticleId);
-                    mFirstArticleId = String.valueOf(++articleId);
                     mIsMoveToRight = false;
                 }
                 else if (lastPage < arg0) {// User Move to right
                     LogHelper.e(TAG, "rrrrrrrrrrr");
-                    int articleId = Integer.valueOf(mFirstArticleId);
-                    mFirstArticleId = String.valueOf(--articleId);
                     mIsMoveToRight = true;
                 }
                 lastPage = arg0;
-
             }
 
             @Override
@@ -96,6 +94,7 @@ public class ArticlesFra extends TBaseFragment {
             public void onPageScrollStateChanged(int position) {
             }
         });
+
     }
 
     @Override
@@ -127,11 +126,11 @@ public class ArticlesFra extends TBaseFragment {
 
     public void initFirst(String articleId) {
         mFirstArticleId = articleId;
+        mCurArticleId=Integer.parseInt(mFirstArticleId);
     }
 
     private static final String[] keys = new String[] {
-            "1000", "1001", "1002",
-            "1003", "1004", "1005", "1006", "1007", "1008", "1009"
+            "1000", "1001", "1002", "1003",
     };
 
     class ArticlesFraAdapter extends FragmentStatePagerAdapter {
@@ -154,24 +153,30 @@ public class ArticlesFra extends TBaseFragment {
                 tBaseFragment = TFragmentFactory.getInstance().get(keys[index]);
             }
             TReaderArticleFragment articleFragment = (TReaderArticleFragment) tBaseFragment;
-            if (mIsMoveToRight) {
-                if (isFirstLoad) {
-                    isFirstLoad = false;
-                } else {
-                    int articleId = Integer.valueOf(mFirstArticleId) - 1;
-                    mFirstArticleId = String.valueOf(articleId);
-                    isFirstLoad = true;
-                }
-            } else {
-                if (isFirstLoad) {
-                    isFirstLoad = true;
-                } else {
-                    int articleId = Integer.valueOf(mFirstArticleId) + 1;
-                    mFirstArticleId = String.valueOf(articleId);
-                    isFirstLoad = false;
-                }
+            if(mIsMoveToRight){
+                articleFragment.load(--mCurArticleId);
+            }else{
+                articleFragment.load(++mCurArticleId);
             }
-            articleFragment.load(mFirstArticleId, true);
+//            int articleId = Integer.valueOf(mFirstArticleId);
+//            if (mIsMoveToRight) {
+//                if (isFirstLoad) {
+//                    isFirstLoad = false;
+//                } else {
+//                    articleId = Integer.valueOf(mFirstArticleId) - 1;
+//                    mFirstArticleId = String.valueOf(articleId);
+//                    isFirstLoad = true;
+//                }
+//            } else {
+//                if (isFirstLoad) {
+//                    isFirstLoad = true;
+//                } else {
+//                    articleId = Integer.valueOf(mFirstArticleId) + 1;
+//                    mFirstArticleId = String.valueOf(articleId);
+//                    isFirstLoad = false;
+//                }
+//            }
+//            articleFragment.load(mFirstArticleId, true);
             return articleFragment;
         }
 
