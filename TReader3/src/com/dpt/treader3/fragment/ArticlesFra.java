@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.LayoutInflater;
@@ -69,7 +71,7 @@ public class ArticlesFra extends TBaseFragment {
     }
 
     private void setEvents() {
-        
+
         mPager.setOnPageChangeListener(new OnPageChangeListener() {
             private int lastPage;
 
@@ -83,7 +85,6 @@ public class ArticlesFra extends TBaseFragment {
                     LogHelper.e(TAG, "rrrrrrrrrrr");
                     mIsMoveToRight = true;
                 }
-                lastPage = arg0;
             }
 
             @Override
@@ -126,14 +127,14 @@ public class ArticlesFra extends TBaseFragment {
 
     public void initFirst(String articleId) {
         mFirstArticleId = articleId;
-        mCurArticleId=Integer.parseInt(mFirstArticleId);
+        mCurArticleId = Integer.parseInt(mFirstArticleId);
     }
 
     private static final String[] keys = new String[] {
-            "1000", "1001", "1002", "1003",
+        "1000", "1001", "1002", "1003","1004", "1005", "1006", "1007",
     };
 
-    class ArticlesFraAdapter extends FragmentStatePagerAdapter {
+    class ArticlesFraAdapter extends FragmentPagerAdapter {
 
         private int index;
 
@@ -145,38 +146,24 @@ public class ArticlesFra extends TBaseFragment {
         public Fragment getItem(int position) {
             index = position % keys.length;
             TBaseFragment tBaseFragment;
+            LogHelper.e(TAG, "position" + position);
             LogHelper.e(TAG, "key======" + keys[index]);
             if (TFragmentFactory.getInstance().isAdd(keys[index])) {
                 tBaseFragment = TFragmentFactory.getInstance().get(keys[index]);
             } else {
-                TFragmentFactory.getInstance().putAndAddCache(keys[index], TReaderArticleFragment.class);
-                tBaseFragment = TFragmentFactory.getInstance().get(keys[index]);
+                tBaseFragment = TFragmentFactory.getInstance().putAndAddCache(keys[index],
+                        TReaderArticleFragment.class);
             }
             TReaderArticleFragment articleFragment = (TReaderArticleFragment) tBaseFragment;
-            if(mIsMoveToRight){
-                articleFragment.load(--mCurArticleId);
-            }else{
-                articleFragment.load(++mCurArticleId);
+            if (mIsMoveToRight) {
+                articleFragment.load(mCurArticleId);
+                mCurArticleId--;
+            } else {
+                articleFragment.load(mCurArticleId);
+                mCurArticleId++;
             }
-//            int articleId = Integer.valueOf(mFirstArticleId);
-//            if (mIsMoveToRight) {
-//                if (isFirstLoad) {
-//                    isFirstLoad = false;
-//                } else {
-//                    articleId = Integer.valueOf(mFirstArticleId) - 1;
-//                    mFirstArticleId = String.valueOf(articleId);
-//                    isFirstLoad = true;
-//                }
-//            } else {
-//                if (isFirstLoad) {
-//                    isFirstLoad = true;
-//                } else {
-//                    articleId = Integer.valueOf(mFirstArticleId) + 1;
-//                    mFirstArticleId = String.valueOf(articleId);
-//                    isFirstLoad = false;
-//                }
-//            }
-//            articleFragment.load(mFirstArticleId, true);
+
+            LogHelper.e(TAG, "mCurArticleId----------------" + mCurArticleId);
             return articleFragment;
         }
 
@@ -186,5 +173,4 @@ public class ArticlesFra extends TBaseFragment {
         }
 
     }
-
 }
