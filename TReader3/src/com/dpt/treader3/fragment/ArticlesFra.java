@@ -4,9 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.LayoutInflater;
@@ -36,12 +34,11 @@ public class ArticlesFra extends TBaseFragment {
 
     protected int mCurPosition;
 
-    public boolean isFirstLoad = true;
+    public boolean isFirstInit;
 
     protected boolean mIsMoveToRight = true;
 
     private int mCurArticleId;
-
 
     @Override
     public void onAttach(Activity activity) {
@@ -71,21 +68,34 @@ public class ArticlesFra extends TBaseFragment {
         super.onViewCreated(view, savedInstanceState);
     }
 
+    private int lastPage;
+    
     private void setEvents() {
 
         mPager.setOnPageChangeListener(new OnPageChangeListener() {
-            private int lastPage;
+            
 
             @Override
             public void onPageSelected(int arg0) {
+                isFirstInit = false;
+                
                 if (lastPage > arg0) {// User Move to left
-                    LogHelper.e(TAG, "lllllllllll");
+                    LogHelper.e(TAG, "leftleftleftleft");
                     mIsMoveToRight = false;
+                    TReaderArticleFragment articleFragment = (TReaderArticleFragment) mFraAdapter
+                            .getItem(mPager.getCurrentItem() - 1);
+                    articleFragment.load(mCurArticleId);
                 }
                 else if (lastPage < arg0) {// User Move to right
-                    LogHelper.e(TAG, "rrrrrrrrrrr");
+                    LogHelper.e(TAG, "rightrightrightright");
                     mIsMoveToRight = true;
+                    TReaderArticleFragment articleFragment = (TReaderArticleFragment) mFraAdapter
+                            .getItem(mPager.getCurrentItem() + 1);
+                    articleFragment.load(mCurArticleId);
                 }
+                
+                
+                lastPage=arg0;
             }
 
             @Override
@@ -94,6 +104,7 @@ public class ArticlesFra extends TBaseFragment {
 
             @Override
             public void onPageScrollStateChanged(int position) {
+                LogHelper.e(TAG, "onPageScrollStateChanged ---------" + position);
             }
         });
 
@@ -129,10 +140,15 @@ public class ArticlesFra extends TBaseFragment {
     public void initFirst(String articleId) {
         mFirstArticleId = articleId;
         mCurArticleId = Integer.parseInt(mFirstArticleId);
+        isFirstInit = true;
+        if (mContext != null) {
+            mFraAdapter = new ArticlesFraAdapter(getFragmentManager());
+            mPager.setAdapter(mFraAdapter);
+        }
     }
 
     private static final String[] keys = new String[] {
-        "1000", "1001", "1002", "1003","1004"
+            "1000", "1001", "1002", "1003"
     };
 
     class ArticlesFraAdapter extends FragmentStatePagerAdapter {
@@ -145,10 +161,14 @@ public class ArticlesFra extends TBaseFragment {
 
         @Override
         public Fragment getItem(int position) {
+            LogHelper.e(TAG, "position=====   " + position);
+            System.out.println("position=====   " + position);
             index = position % keys.length;
+            if(index<0){
+                index=index*-1;
+            }
             TBaseFragment tBaseFragment;
-            LogHelper.e(TAG, "position" + position);
-            LogHelper.e(TAG, "key======" + keys[index]);
+            LogHelper.e(TAG, "key======   " + keys[index]);
             if (TFragmentFactory.getInstance().isAdd(keys[index])) {
                 tBaseFragment = TFragmentFactory.getInstance().get(keys[index]);
             } else {
@@ -156,15 +176,10 @@ public class ArticlesFra extends TBaseFragment {
                         TReaderArticleFragment.class);
             }
             TReaderArticleFragment articleFragment = (TReaderArticleFragment) tBaseFragment;
-            if (mIsMoveToRight) {
+            if (isFirstInit) {
                 articleFragment.load(mCurArticleId);
                 mCurArticleId--;
-            } else {
-                articleFragment.load(mCurArticleId);
-                mCurArticleId++;
             }
-
-            LogHelper.e(TAG, "mCurArticleId----------------" + mCurArticleId);
             return articleFragment;
         }
 
@@ -174,12 +189,10 @@ public class ArticlesFra extends TBaseFragment {
         }
 
         @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
-            super.destroyItem(container, position, object);
+        public Object instantiateItem(ViewGroup arg0, int arg1) {
+            return super.instantiateItem(arg0, arg1);
         }
-        
-        
 
     }
-   
+
 }

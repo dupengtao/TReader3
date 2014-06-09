@@ -9,6 +9,7 @@ import android.webkit.WebView;
 
 import com.dpt.tbase.app.base.engine.AbUiBaseResultCallBack;
 import com.dpt.tbase.app.base.interfaces.IFraCommCB;
+import com.dpt.tbase.app.base.utils.LogHelper;
 import com.dpt.tbase.app.fragment.TBaseFragment;
 import com.dpt.treader3.R;
 import com.dpt.treader3.engine.TReaderEngine;
@@ -123,6 +124,7 @@ public class TReaderArticleFragment extends TBaseFragment {
 
     @Override
     public void onViewCreatedLoad(int state) {
+        LogHelper.e(TAG, "onViewCreatedLoad load");
         load(mArticleId, mIsNews);
     }
 
@@ -144,11 +146,12 @@ public class TReaderArticleFragment extends TBaseFragment {
         mArticleId = articleId;
         mIsNews = isNews;
         if (mContext != null) {
+            LogHelper.e(TAG, "only load");
             mArticleUrl = UriHelper.getNewsItemBody(articleId);
             mArticleView.scroll2Top();
             mArticleView.clear();
+            LogHelper.e(TAG, "cur url======"+mArticleUrl);
             mTReaderEngine.load2NewsArticle(mArticleUrl, mLoadNewsArticleCb);
-
         }
     }
     
