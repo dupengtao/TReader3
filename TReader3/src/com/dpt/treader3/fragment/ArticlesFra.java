@@ -42,6 +42,7 @@ public class ArticlesFra extends TBaseFragment {
 
     private int mCurArticleId;
 
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -131,10 +132,10 @@ public class ArticlesFra extends TBaseFragment {
     }
 
     private static final String[] keys = new String[] {
-        "1000", "1001", "1002", "1003","1004", "1005", "1006", "1007",
+        "1000", "1001", "1002", "1003","1004"
     };
 
-    class ArticlesFraAdapter extends FragmentPagerAdapter {
+    class ArticlesFraAdapter extends FragmentStatePagerAdapter {
 
         private int index;
 
@@ -172,5 +173,13 @@ public class ArticlesFra extends TBaseFragment {
             return 10000;
         }
 
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            super.destroyItem(container, position, object);
+        }
+        
+        
+
     }
+   
 }
