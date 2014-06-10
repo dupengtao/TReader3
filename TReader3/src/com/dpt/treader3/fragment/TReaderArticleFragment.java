@@ -156,6 +156,7 @@ public class TReaderArticleFragment extends TBaseFragment {
     }
     
     public void load(int articleId) {
+        System.out.println("preload -----"+articleId);
         load(String.valueOf(articleId), true);
     }
 

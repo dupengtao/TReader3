@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
@@ -31,14 +32,10 @@ public class ArticlesFra extends TBaseFragment {
     private ViewPager mPager;
     private ArticlesFraAdapter mFraAdapter;
     private String mFirstArticleId;
-
-    protected int mCurPosition;
-
-    public boolean isFirstInit;
-
-    protected boolean mIsMoveToRight = true;
-
-    private int mCurArticleId;
+    private int firstArticleId, mCurArticleId, articleId;
+    public boolean isFirstInit, mIsMoveToRight = true;
+    private int lastPage;
+    private boolean mIsFirstMoveToRight = true, preChange = true, isPageChange;
 
     @Override
     public void onAttach(Activity activity) {
@@ -68,34 +65,58 @@ public class ArticlesFra extends TBaseFragment {
         super.onViewCreated(view, savedInstanceState);
     }
 
-    private int lastPage;
-    
     private void setEvents() {
 
         mPager.setOnPageChangeListener(new OnPageChangeListener() {
-            
 
             @Override
             public void onPageSelected(int arg0) {
                 isFirstInit = false;
-                
+                TReaderArticleFragment articleFragment = null;
                 if (lastPage > arg0) {// User Move to left
                     LogHelper.e(TAG, "leftleftleftleft");
                     mIsMoveToRight = false;
-                    TReaderArticleFragment articleFragment = (TReaderArticleFragment) mFraAdapter
+                    articleFragment = (TReaderArticleFragment) mFraAdapter
                             .getItem(mPager.getCurrentItem() - 1);
-                    articleFragment.load(mCurArticleId);
+                    isPageChange = true;
                 }
                 else if (lastPage < arg0) {// User Move to right
                     LogHelper.e(TAG, "rightrightrightright");
                     mIsMoveToRight = true;
-                    TReaderArticleFragment articleFragment = (TReaderArticleFragment) mFraAdapter
+                    articleFragment = (TReaderArticleFragment) mFraAdapter
                             .getItem(mPager.getCurrentItem() + 1);
-                    articleFragment.load(mCurArticleId);
+                    isPageChange = true;
+                } else {
+                    isPageChange = false;
                 }
-                
-                
-                lastPage=arg0;
+                lastPage = arg0;
+
+                if (isPageChange) {
+
+                    if (preChange != mIsMoveToRight) {
+                        System.out.println("preChange!=mIsMoveToRight");
+                        if (mIsMoveToRight) {
+                            System.out.println("chanage right");
+                            mCurArticleId--;
+                            mCurArticleId--;
+                        } else {
+                            System.out.println("chanage left");
+                            mCurArticleId++;
+                            mCurArticleId++;
+                        }
+                        if (articleFragment != null) {
+                            preLoadNews(articleFragment);
+                        }
+                        mCurArticleId = articleId;
+                    } else {
+                        if (articleFragment != null) {
+                            preLoadNews(articleFragment);
+                        }
+                        mCurArticleId = articleId;
+                    }
+                    preChange = mIsMoveToRight;
+                }
+
             }
 
             @Override
@@ -108,6 +129,23 @@ public class ArticlesFra extends TBaseFragment {
             }
         });
 
+    }
+
+    protected void preLoadNews(TReaderArticleFragment articleFragment) {
+
+        if (mIsMoveToRight) {
+            if (mIsFirstMoveToRight) {
+                mCurArticleId++;
+                mIsFirstMoveToRight = false;
+            }
+            articleId = mCurArticleId - 1;
+            articleFragment.load(articleId);
+        } else {
+            articleId = mCurArticleId + 1;
+            if (firstArticleId >= articleId) {
+                articleFragment.load(articleId);
+            }
+        }
     }
 
     @Override
@@ -139,7 +177,7 @@ public class ArticlesFra extends TBaseFragment {
 
     public void initFirst(String articleId) {
         mFirstArticleId = articleId;
-        mCurArticleId = Integer.parseInt(mFirstArticleId);
+        firstArticleId = mCurArticleId = Integer.parseInt(mFirstArticleId);
         isFirstInit = true;
         if (mContext != null) {
             mFraAdapter = new ArticlesFraAdapter(getFragmentManager());
@@ -162,10 +200,9 @@ public class ArticlesFra extends TBaseFragment {
         @Override
         public Fragment getItem(int position) {
             LogHelper.e(TAG, "position=====   " + position);
-            System.out.println("position=====   " + position);
             index = position % keys.length;
-            if(index<0){
-                index=index*-1;
+            if (index < 0) {
+                index = index * -1;
             }
             TBaseFragment tBaseFragment;
             LogHelper.e(TAG, "key======   " + keys[index]);
