@@ -70,6 +70,11 @@ CnblogsNewsFraListener,TReaderTitleListener,TReaderArticleListener,ArticlesFraLi
         gotoArticlesFragment(articleId, isNews);
         changeTitle(Constants.ARTICLE_STYLE);
     }
+    
+    @Override
+    protected int getMaxSize() {
+        return 5;
+    }
 
     private void changeTitle(int style) {
         mTitleFragment.changeStyle(style);

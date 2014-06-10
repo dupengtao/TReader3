@@ -185,8 +185,7 @@ public class ArticlesFra extends TBaseFragment {
     }
 
     public void resetParams() {
-        isFirstInit = true;
-        isFirstInit=false;
+        isFirstInit=true;
         mIsMoveToRight = true;
         mIsFirstMoveToRight = preChange = true;
         isPageChange=false;
