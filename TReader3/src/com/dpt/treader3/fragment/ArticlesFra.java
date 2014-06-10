@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
@@ -178,11 +177,19 @@ public class ArticlesFra extends TBaseFragment {
     public void initFirst(String articleId) {
         mFirstArticleId = articleId;
         firstArticleId = mCurArticleId = Integer.parseInt(mFirstArticleId);
-        isFirstInit = true;
+        resetParams();
         if (mContext != null) {
             mFraAdapter = new ArticlesFraAdapter(getFragmentManager());
             mPager.setAdapter(mFraAdapter);
         }
+    }
+
+    public void resetParams() {
+        isFirstInit = true;
+        isFirstInit=false;
+        mIsMoveToRight = true;
+        mIsFirstMoveToRight = preChange = true;
+        isPageChange=false;
     }
 
     private static final String[] keys = new String[] {
