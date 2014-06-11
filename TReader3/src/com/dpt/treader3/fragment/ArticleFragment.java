@@ -21,9 +21,6 @@ import com.dpt.treader3.widget.SwipeRefreshLayout.OnRefreshListener;
 
 public class ArticleFragment extends TBaseFragment {
 
-    
-    
-    
     public interface TReaderArticleListener extends IFraCommCB {
 
     }
@@ -41,6 +38,7 @@ public class ArticleFragment extends TBaseFragment {
     private SwipeRefreshLayout mSwipeLayout;
     private boolean mIsNews;
     private String mArticleId;
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -80,7 +78,8 @@ public class ArticleFragment extends TBaseFragment {
             @Override
             public void onRefresh() {
                 mArticleView.clear();
-                mTReaderEngine.load2NewsArticle(mArticleUrl, mLoadNewsArticleCb);
+                mTReaderEngine
+                        .load2NewsArticle(mArticleUrl, mLoadNewsArticleCb);
             }
         });
     }
@@ -100,11 +99,12 @@ public class ArticleFragment extends TBaseFragment {
 
             @Override
             public void noNetworkEnvironment() {
-                super.noNetworkEnvironment();
+                //super.noNetworkEnvironment();
             }
 
             @Override
-            public void onSuccessResult(ArticleTo datas, int statusCode, String[] otherMsg) {
+            public void onSuccessResult(ArticleTo datas, int statusCode,
+                    String[] otherMsg) {
                 datas2ui(datas);
             }
 
@@ -115,7 +115,8 @@ public class ArticleFragment extends TBaseFragment {
         mArticleView.setArticleTitle(datas.getTitle());
         String context = fromatContext(datas.getContent());
         mArticleView.setArticleContext(context);
-        mArticleView.setArticlePrompt(datas.getSourceName() + " 发布于 " + datas.getSubmitDate());
+        mArticleView.setArticlePrompt(datas.getSourceName() + " 发布于 "
+                + datas.getSubmitDate());
     }
 
     private String fromatContext(String content) {
@@ -150,13 +151,13 @@ public class ArticleFragment extends TBaseFragment {
             mArticleUrl = UriHelper.getNewsItemBody(articleId);
             mArticleView.scroll2Top();
             mArticleView.clear();
-            LogHelper.e(TAG, "cur url======"+mArticleUrl);
+            LogHelper.e(TAG, "cur url======" + mArticleUrl);
             mTReaderEngine.load2NewsArticle(mArticleUrl, mLoadNewsArticleCb);
         }
     }
-    
+
     public void load(int articleId) {
-        System.out.println("preload -----"+articleId);
+        System.out.println("preload -----" + articleId);
         load(String.valueOf(articleId), true);
     }
 
