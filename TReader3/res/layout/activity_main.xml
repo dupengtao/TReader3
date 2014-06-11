@@ -14,7 +14,7 @@
 
     <fragment
         android:id="@+id/fAccTitleBar"
-        android:name="com.dpt.treader3.fragment.TReaderTitleFragment"
+        android:name="com.dpt.treader3.fragment.TitleFragment"
         android:layout_width="match_parent"
         android:layout_height="@dimen/fragment_title_hight" />
 
