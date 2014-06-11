@@ -2,3 +2,7 @@
 /gen
 /bin
 /libs
+/.settings
+/assets
+/.classpath
+/.project.properties

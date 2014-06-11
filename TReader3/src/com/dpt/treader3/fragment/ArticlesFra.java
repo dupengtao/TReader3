@@ -71,18 +71,18 @@ public class ArticlesFra extends TBaseFragment {
             @Override
             public void onPageSelected(int arg0) {
                 isFirstInit = false;
-                TReaderArticleFragment articleFragment = null;
+                ArticleFragment articleFragment = null;
                 if (lastPage > arg0) {// User Move to left
                     LogHelper.e(TAG, "leftleftleftleft");
                     mIsMoveToRight = false;
-                    articleFragment = (TReaderArticleFragment) mFraAdapter
+                    articleFragment = (ArticleFragment) mFraAdapter
                             .getItem(mPager.getCurrentItem() - 1);
                     isPageChange = true;
                 }
                 else if (lastPage < arg0) {// User Move to right
                     LogHelper.e(TAG, "rightrightrightright");
                     mIsMoveToRight = true;
-                    articleFragment = (TReaderArticleFragment) mFraAdapter
+                    articleFragment = (ArticleFragment) mFraAdapter
                             .getItem(mPager.getCurrentItem() + 1);
                     isPageChange = true;
                 } else {
@@ -130,7 +130,7 @@ public class ArticlesFra extends TBaseFragment {
 
     }
 
-    protected void preLoadNews(TReaderArticleFragment articleFragment) {
+    protected void preLoadNews(ArticleFragment articleFragment) {
 
         if (mIsMoveToRight) {
             if (mIsFirstMoveToRight) {
@@ -216,9 +216,9 @@ public class ArticlesFra extends TBaseFragment {
                 tBaseFragment = TFragmentFactory.getInstance().get(keys[index]);
             } else {
                 tBaseFragment = TFragmentFactory.getInstance().putAndAddCache(keys[index],
-                        TReaderArticleFragment.class);
+                        ArticleFragment.class);
             }
-            TReaderArticleFragment articleFragment = (TReaderArticleFragment) tBaseFragment;
+            ArticleFragment articleFragment = (ArticleFragment) tBaseFragment;
             if (isFirstInit) {
                 articleFragment.load(mCurArticleId);
                 mCurArticleId--;

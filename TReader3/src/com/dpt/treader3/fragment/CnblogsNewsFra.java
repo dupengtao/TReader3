@@ -42,8 +42,7 @@ public class CnblogsNewsFra extends TBaseFragment {
     private static final String TAG = CnblogsNewsFra.class.getSimpleName();
     private static final int SWIPE_MIN_DISTANCE = 100;
     private View mMainView;
-    private RelativeLayout mMainTitle;
-    private RelativeLayout mRlBackToTop;
+    private RelativeLayout mMainTitle,mRlBackToTop;
     private ListView mMainListView;
     private TextView mTvMainHeadTime;
     private SwipeRefreshLayout mSwipeLayout;
@@ -55,9 +54,9 @@ public class CnblogsNewsFra extends TBaseFragment {
     private CnblogsNewsFraListener mCallBack;
     private Runnable mBackToTopCb;
     private SwipeDetectorCallBack mSwipeDetectorCallBack;
-    private AbUiBaseResultCallBack<List<EntryTo>> mRecentNewsCB;
+    private AbUiBaseResultCallBack<List<EntryTo>> mRecentNewsCB,mNextPageCB;
     private TReaderEngine mTEngine;
-    private AbUiBaseResultCallBack<List<EntryTo>> mNextPageCB;
+    private int mHeadCounts;
 
     public interface CnblogsNewsFraListener extends IFraCommCB {
         /**
@@ -143,6 +142,7 @@ public class CnblogsNewsFra extends TBaseFragment {
     }
 
     private void setEvents() {
+        mHeadCounts=mMainListView.getHeaderViewsCount();
         mMainListView.setOnScrollListener(new OnScrollListener() {
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem,
@@ -157,8 +157,8 @@ public class CnblogsNewsFra extends TBaseFragment {
                         }
                     }
                 }
-                if (firstVisibleItem > 2) {
-                    EntryTo entry = mMainAdapter.getList().get(firstVisibleItem - 2);
+                if (firstVisibleItem > mHeadCounts) {
+                    EntryTo entry = mMainAdapter.getList().get(firstVisibleItem - mHeadCounts);
                     if (!mCurTime.equals(entry.getSimpleTime())) {
                         mCurTime = entry.getSimpleTime();
                         if (mFirstTime.equals(mCurTime)) {
@@ -258,8 +258,10 @@ public class CnblogsNewsFra extends TBaseFragment {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                EntryTo entry = mMainAdapter.getList().get(position - 2);
-                mCallBack.onItemClick(entry.id, true);
+                if(position>mHeadCounts-1){
+                    EntryTo entry = mMainAdapter.getList().get(position - mHeadCounts);
+                    mCallBack.onItemClick(entry.id, true);
+                }
             }
         });
     }
@@ -294,7 +296,7 @@ public class CnblogsNewsFra extends TBaseFragment {
 
             @Override
             public void noNetworkEnvironment() {
-                super.noNetworkEnvironment();
+                //super.noNetworkEnvironment();
             }
 
             @Override
