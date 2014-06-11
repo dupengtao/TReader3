@@ -9,25 +9,25 @@ import com.dpt.treader3.fragment.ArticlesFra;
 import com.dpt.treader3.fragment.ArticlesFra.ArticlesFraListener;
 import com.dpt.treader3.fragment.CnblogsNewsFra;
 import com.dpt.treader3.fragment.CnblogsNewsFra.CnblogsNewsFraListener;
-import com.dpt.treader3.fragment.TReaderArticleFragment;
-import com.dpt.treader3.fragment.TReaderArticleFragment.TReaderArticleListener;
-import com.dpt.treader3.fragment.TReaderTitleFragment;
-import com.dpt.treader3.fragment.TReaderTitleFragment.TReaderTitleListener;
+import com.dpt.treader3.fragment.ArticleFragment;
+import com.dpt.treader3.fragment.ArticleFragment.TReaderArticleListener;
+import com.dpt.treader3.fragment.TitleFragment;
+import com.dpt.treader3.fragment.TitleFragment.TReaderTitleListener;
 import com.dpt.treader3.net.Constants;
 
 public class TReaderFraActivity extends TBaseFraActivity implements
 CnblogsNewsFraListener,TReaderTitleListener,TReaderArticleListener,ArticlesFraListener{
 
     private CnblogsNewsFra mNewsFra;
-    private TReaderTitleFragment mTitleFragment;
-    private TReaderArticleFragment mArticleFragment;
+    private TitleFragment mTitleFragment;
+    private ArticleFragment mArticleFragment;
     private ArticlesFra mArticlesFra;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mTitleFragment = (TReaderTitleFragment) getSupportFragmentManager()
+        mTitleFragment = (TitleFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.fAccTitleBar);
     }
     
@@ -92,9 +92,9 @@ CnblogsNewsFraListener,TReaderTitleListener,TReaderArticleListener,ArticlesFraLi
         return mArticlesFra;
     }
     
-    private TReaderArticleFragment initArticleFragment() {
+    private ArticleFragment initArticleFragment() {
         if (mArticleFragment == null) {
-            mArticleFragment = new TReaderArticleFragment();
+            mArticleFragment = new ArticleFragment();
         }
         return mArticleFragment;
     }
