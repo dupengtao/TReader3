@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no">
+    <link href="news_qa.min.css" rel="stylesheet">
+    <link href="center_cropped.css" rel="stylesheet">
+	<script type="text/javascript">
+function setArticleContext(arg){
+	 document.getElementById("content").innerHTML =   
+         (arg);
+}
+function setArticleTitle(arg){
+	 document.getElementById("title_area").innerHTML =   
+         (arg);
+}
+function setArticlePrompt(arg){
+	 document.getElementById("article_prompt").innerHTML =   
+         (arg);
+}
+function setNightMode(){
+	document.getElementById('content-inner').style.backgroundColor='#666666';
+}
+</script>
+</head>
+<body>
+<div class="main-wrap content-wrap">
+<div style="background-image:url('bg_2.png');  background-size:100% 100%;background-repeat:no-repeat;">
+<div id="title_area" class="title-area-content" ></div>
+</div>
+    <div class="content-inner" id="content-inner">
+        <div class="question">
+<!--             <h2 class="question-title"></h2> -->
+            <div class="answer">
+<!--                 <div class="meta"><img class="avatar"
+                                       src="http://p3.zhimg.com\/5e\/4c\/5e4ce4ac0_is.jpg"><span
+                        class="author">菠菜，</span><span class="bio">豆瓣阅读作品《情感问答》上架，欢迎选购</span></div> -->
+                <div id="content"
+                        class="content">
+                </div>
+            </div>
+
+            <div class="view-more" id="article_prompt"></div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
