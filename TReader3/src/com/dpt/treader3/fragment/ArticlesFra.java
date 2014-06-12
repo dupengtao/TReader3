@@ -124,7 +124,6 @@ public class ArticlesFra extends TBaseFragment {
 
             @Override
             public void onPageScrollStateChanged(int position) {
-                LogHelper.e(TAG, "onPageScrollStateChanged ---------" + position);
             }
         });
 

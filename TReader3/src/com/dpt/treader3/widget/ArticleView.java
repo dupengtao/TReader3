@@ -79,7 +79,7 @@ public class ArticleView {
     }
 
     public void loadLocal() {
-        loadurl("file:///android_asset/test.html");
+        loadurl("file:///android_asset/t.html");
     }
     
     final class InJavaScriptArticle {
