@@ -5,6 +5,8 @@ TReader3
 
 希望有兴趣的同学可以一起交流开发。
 
+欢迎fork dev 并且 pull request给我
+
 ###APP截图
 ![github](https://raw.githubusercontent.com/dupengtao/TReader3/master/img_0.png "APP截图")
 
